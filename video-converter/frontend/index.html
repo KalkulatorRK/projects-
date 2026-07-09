@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Converter — конвертер видео</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Video Converter</h1>
+        <p class="subtitle">Локальный конвертер для Windows · браузер + FFmpeg</p>
+      </div>
+      <div id="ffmpeg-status" class="status-badge">Проверка FFmpeg…</div>
+    </header>
+
+    <section class="panel">
+      <div id="dropzone" class="dropzone" tabindex="0">
+        <div class="dropzone-inner">
+          <div class="dropzone-icon">🎬</div>
+          <p><strong>Перетащите видеофайлы сюда</strong> или нажмите для выбора</p>
+          <p class="hint">VOB, AVI, MPG, WMV, FLV, MOV, MKV, 3GP, TS, M2TS и др.</p>
+          <input type="file" id="file-input" multiple accept=".vob,.avi,.mpg,.mpeg,.wmv,.flv,.mov,.mkv,.3gp,.ts,.m2ts,.mp4,.webm,.m4v">
+        </div>
+      </div>
+
+      <div class="controls grid-2">
+        <label>
+          <span>Профиль конвертации</span>
+          <select id="preset-select"></select>
+        </label>
+        <label>
+          <span>Папка результата (необязательно)</span>
+          <div class="output-row">
+            <input type="text" id="output-dir" placeholder="По умолчанию: video-converter/workspace/output">
+            <button type="button" id="pick-folder" class="btn secondary">Обзор…</button>
+          </div>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="btn-upload" class="btn primary" disabled>Добавить в очередь</button>
+        <button type="button" id="btn-path" class="btn secondary" title="Добавить по полному пути (без загрузки)">Путь к файлу…</button>
+        <button type="button" id="btn-concat" class="btn secondary" title="Склеить несколько VOB/частей">Склеить выбранные</button>
+        <button type="button" id="btn-refresh" class="btn ghost">Обновить</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Очередь</h2>
+        <span id="queue-count" class="muted">0 задач</span>
+      </div>
+      <div id="queue-empty" class="empty">Очередь пуста — добавьте файлы для конвертации.</div>
+      <div id="queue-list" class="queue-list"></div>
+    </section>
+
+    <section class="panel collapsible">
+      <button type="button" class="panel-toggle" id="log-toggle">Журнал ▾</button>
+      <pre id="log-box" class="log-box hidden"></pre>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

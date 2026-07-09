@@ -1,0 +1,18 @@
+workspace/*
+!workspace/.gitkeep
+uploads/
+output/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# FFmpeg binaries — скачивать локально, не хранить в git
+bin/*.exe
+bin/*.dll
+
+# Медиа и результаты конвертации
+*.mp4
+*.vob
+*.avi
+*.mkv
